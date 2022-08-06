@@ -1,0 +1,283 @@
+/*
+Colors used
+Text Color (Dark Gray): #2b2b2b;
+Primary Color: #357b70;
+Secondary Color: #e0b354;
+*/
+
+/* defining CSS native variables */
+:root{
+  --primary-color: #357b70;
+  --secondary-color: #e0b354;
+  --dark-gray: #2b2b2b;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1{
+  font-size: 30px;
+  font-weight: 700;
+}
+
+a{
+  color: var(--primary-color);
+}
+
+a:visited{
+  /*visited link- color: Orange*/
+  color: #05676e;
+}
+
+a:hover, a:focus{
+  /*no underlining when hovering over the link*/
+  text-decoration: none;
+}
+
+a:active{
+  /*selected link - color: lime green*/
+  color: #489c79;
+}
+
+button,
+.button{
+  /*overwrites browser default and reset the border*/
+  border: none;
+
+  /*overwrites browser default and take the font from the outer container*/
+  font-family: inherit;
+
+  /*style background color, font color and text decoration*/
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-decoration: none;
+
+  /*add spacing*/
+  padding: 10px;
+  border-radius: 3px;
+
+  /*bottom border with opacity*/
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+
+  /*transitions*/
+  transition: 0.2s opacity;
+}
+
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  /*appearance of mouse cursor as a miniature hand*/
+  cursor: pointer;
+  /*slightly lighter upon hovering - reduce the opacity to 70%*/
+  opacity: 0.7;
+}
+
+.button_secondary{
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
+}
+
+.navigation-list_item--active{
+  text-decoration: none;
+}
+
+.profile_portrait{
+  float: left;
+  width: 250px;
+  height: auto;
+  max-width: 100%;
+  margin-right: 40px;
+  border-radius: 50%;
+}
+
+/*flex layout is used for footer*/
+
+.page-footer{
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.profile{
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+.about-profile{
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-profile_item{
+  list-style-type: none;
+}
+
+/*setting default width to all the HTML elements in the css file with a
+universal selector*/
+
+*{
+  box-sizing: border-box;
+}
+
+/*flex layout is used for header*/
+
+.page-header{
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px inset; /*line separating navigation bar from the body*/
+}
+
+.page-header_item{
+  flex: 0 1 200px;
+}
+
+.page-header_item:last-child{
+  flex-grow: 1;
+  text-align: right;
+}
+
+.navigation-list{
+  list-style-type: none;
+}
+
+.navigation-list li{
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.navigation-list_item{
+  transition: all 1s linear 0s;
+}
+
+.navigation-list_item:hover{
+  color: #0088e9;
+  border-bottom: 3px solid blue;
+}
+
+/* start grid fallback */
+.grid__item {
+ display: inline-block;
+ width: 33%;
+}
+/* end grid fallback */
+
+@supports (display: grid) {
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    text-align: justify;
+  }
+
+  .grid_item{
+    background-color: lightgray;
+    width: auto;
+    min-height: auto;
+    margin: 0;
+    padding: 15px;
+  }
+
+  .grid_item:last-child{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media all and (min-width: 500px) and (max-width: 750px) {
+  .grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media all and (max-width: 750px) {
+  .grid{
+    grid-gap: 10px;
+  }
+
+  .grid_item:last-child{
+    grid-column: auto/auto;
+    grid-row: auto/auto;
+  }
+
+  h1{
+    font-size: 22px;
+  }
+}
+
+/*animation - CSS rule set for changing the color of the sun*/
+
+@keyframes color-change {
+  0%{
+    fill: #EDC655;
+  }
+
+  50%{
+    fill: #fcffad;
+  }
+
+  100%{
+    fill: #f76414;
+  }
+}
+
+/*animation-duration, animation-name, animation-iteration-count, animation-direction,
+animation-timing-function - in the same order*/
+
+.sun{
+  animation: 4s color-change infinite alternate linear;
+}
+
+/*animation - CSS rule set for front most cloud movement*/
+
+@keyframes cloud-move {
+  from{
+    transform: translate(0, 50px);
+  }
+
+  to{
+    transform: translate(200px,50px);
+  }
+}
+
+/*animation-duration, animation-name, animation-iteration-count, animation-direction,
+animation-timing-function - in the same order*/
+
+.cloud-front{
+  animation: 30s cloud-move infinite alternate linear;
+}
+
+/*animation - CSS rule set for cloud movement in the back*/
+
+@keyframes cloud-move-reverse {
+  from{
+    transform: translate(446px,48px);
+  }
+
+  to{
+    transform: translate(100px,48px);
+  }
+}
+
+/*animation-duration, animation-name, animation-iteration-count, animation-direction,
+animation-timing-function - in the same order*/
+
+.cloud-back{
+  animation: 34s cloud-move-reverse infinite alternate linear;
+}
